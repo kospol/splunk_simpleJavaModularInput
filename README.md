@@ -2,14 +2,14 @@
 Kostas Polychronis
 
 ### What is a modular input
-Modular inputs are a very powerful tool that helps the process of putting data into a Splunk instance. It's used when the traditional input data solutions (monitoring files, listening for TCP or UDP data etc) are not viable or when there's need for more sophisticated processing of the data. For more imformation read [this](http://docs.splunk.com/Documentation/Splunk/latest/AdvancedDev/ModInputsIntro)
+Modular inputs are a very powerful tool that helps the process of putting data into a Splunk instance. It's used when the traditional input data solutions (monitoring files, listening for TCP or UDP data etc) are not viable or when there's need for more sophisticated processing of the data. For more imformation read [this](http://docs.splunk.com/Documentation/Splunk/latest/AdvancedDev/ModInputsIntro).
 
 ### What are we going to do in this example
 The sole purpose of this project is to teach you how to develop a modular input with the Java Splunk SDK and create a simple app for that modular input.
 More specifically we're going to create a modular input that will create random numbers and send them to Splunk. Through the modular input configuration we will set the preferences of the modular input such as the min and max number and the frequency.
 
 ### Why Java?
-It’s true that it’s probably a little bit less complicated to create and/or maintain a modular input in python rather than in Java. Also, most of the times the servers that Splunk is running on don’t have a JVM installed. On the other hand, Java does offer a broad collection of libraries and a lot of developers are comfortable with the language. I believe that in most of the cases code reusability is the key for someone to create a modular input in Java. Don’t forget that Splunk offers SDKs for the following languages Python, JavaScript, PHP, Ruby and C#. If Java is not your thing, great! Pick one of the others and start sending data ;) More information about the rest of the SDKs can be found [here](http://dev.splunk.com/sdks)
+It’s true that it’s probably a little bit less complicated to create and/or maintain a modular input in python rather than in Java. Also, most of the times the servers that Splunk is running on don’t have a JVM installed. On the other hand, Java does offer a broad collection of libraries and a lot of developers are comfortable with the language. I believe that in most of the cases code reusability is the key for someone to create a modular input in Java. Don’t forget that Splunk offers SDKs for the following languages Python, JavaScript, PHP, Ruby and C#. If Java is not your thing, great! Pick one of the others and start sending data ;) More information about the rest of the SDKs can be found [here](http://dev.splunk.com/sdks).
 
 ### What is needed
 * [A Splunk instance](https://www.splunk.com/en_us/download/splunk-enterprise.html)
@@ -148,7 +148,7 @@ Inside inputs.conf we specify the index and the sourcetype for out data. Notice 
 # Analyzing the Java program
 In order to understand how the Java program works you have to understand how Splunk is using the modular inputs. A modular input is a process that Splunk starts when it’s started. The difference with scripted inputs is that modular inputs run constantly where scripted inputs are started by Splunk on an interval, do something and output the data that Splunk indexes.
 
-## The Java program is consisted of 4 main key parts:
+### The Java program is consisted of 4 main key parts:
 ### The getScheme method
 The getScheme method is responsible to return the Scheme for the modular input. In this specific example we specify 3 arguments, the minimum and maximum range of the to be produced and the frequency. The Scheme class will generate the XML to be parsed by Splunk for the modular input using the ```--scheme``` argument. When adding a new modular input we will be asked to provide these values. Splunk will then pass these arguments to our modular input and provide the APIs to read these values. Another example of these input values could be the username and the password of a twitter account. A modular input could read these values and fetch all the tweets of that user.
 
@@ -156,6 +156,7 @@ The getScheme method is responsible to return the Scheme for the modular input. 
 ```sh
 $ java -jar myinput.jar --scheme
 ```
+
 ### The validateInput method
 ValidateInput is an optional step used to validate that the values entered are correct. In this specific example we want to make sure that the minimum and maximum numbers make valid and that the frequency is at least 1 second.
 
@@ -176,7 +177,7 @@ In order to create a new configuration of the myinput modular input, go to ```Se
 There you will be asked to input the configuration for the modular input. Then you will be able to see the random generated numbers by going to search and searching for ```index="myinput"``` or ```source="myinput://main"```.
 
 # Notes
-This example is not perfect nor ideal. It is based on the official documentation for the (Splunk Java SDK](dev.splunk.com/view/java-sdk/SP-CAAAER2)
+This example is not perfect nor ideal. It is based on the official documentation for the [Splunk Java SDK](dev.splunk.com/view/java-sdk/SP-CAAAER2)
 
 License
 ----
