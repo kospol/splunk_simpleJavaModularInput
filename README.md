@@ -177,7 +177,7 @@ In order to create a new configuration of the myinput modular input, go to ```Se
 There you will be asked to input the configuration for the modular input. Then you will be able to see the random generated numbers by going to search and searching for ```index="myinput"``` or ```source="myinput://main"```.
 
 # Notes
-This example is not perfect nor ideal. It is based on the official documentation for the [Splunk Java SDK](dev.splunk.com/view/java-sdk/SP-CAAAER2)
+This example is not perfect nor ideal. It is based on the official documentation for the [Splunk Java SDK](http://dev.splunk.com/view/java-sdk/SP-CAAAER2)
 
 License
 ----
